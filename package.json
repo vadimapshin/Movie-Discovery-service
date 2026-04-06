@@ -26,11 +26,15 @@
   },
   "dependencies": {
     "chalk": "^5.6.2",
+    "dotenv": "^17.4.1",
     "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "fastify": "^5.8.4",
     "node-fetch": "^3.3.2",
     "prettier": "^3.8.1"
+  },
+  "devDependencies": {
+    "pino-pretty": "^13.1.3"
   }
 }
