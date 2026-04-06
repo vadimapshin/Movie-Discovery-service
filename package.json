@@ -1,10 +1,36 @@
 {
-  "name": "Movie",
+  "name": "movie",
+  "type": "module",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js"
   },
-  "private": true
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vadimapshin/Movie-Discovery-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vadimapshin/Movie-Discovery-service/issues"
+  },
+  "homepage": "https://github.com/vadimapshin/Movie-Discovery-service#readme",
+  "description": "",
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 120,
+    "tabWidth": 2,
+    "endOfLine": "auto"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "fastify": "^5.8.4",
+    "node-fetch": "^3.3.2",
+    "prettier": "^3.8.1"
+  }
 }
