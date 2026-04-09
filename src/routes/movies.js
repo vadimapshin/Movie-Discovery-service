@@ -19,8 +19,7 @@ export async function moviesRoutes(fastify) {
       const { query, page } = request.query;
 
       try {
-        const data = await searchMovies(query, page);
-        return data;
+        return searchMovies(query, page);
       } catch (err) {
         reply.status(500).send({ error: err.message });
       }
