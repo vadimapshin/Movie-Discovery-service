@@ -13,7 +13,7 @@ const fastify = Fastify({
 
 fastify.get('/ping', async () => {
   {
-    pong: 'ok';
+    return { pong: 'ok' };
   }
 });
 
