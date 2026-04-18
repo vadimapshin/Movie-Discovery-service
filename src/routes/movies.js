@@ -1,4 +1,4 @@
-import { searchMovies } from '../clients/tmdbClient.js';
+import { searchMovies, getMoviesDetails } from '../clients/tmdbClient.js';
 
 export async function moviesRoutes(fastify) {
   fastify.get(
@@ -25,4 +25,13 @@ export async function moviesRoutes(fastify) {
       }
     },
   );
+  fastify.get('/movies/:id', async (request, reply) => {
+    const { id } = request.params;
+    try {
+      const data = await getMoviesDetails(id);
+      return data;
+    } catch (err) {
+      reply.status(500).send({ error: err.message });
+    }
+  });
 }
