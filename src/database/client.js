@@ -4,5 +4,5 @@ import { config } from '../config/env.js';
 const { Pool } = pg;
 
 export const pool = new Pool({
-  connectionString: String(config.DATABASE_URL),
+  connectionString: config.DATABASE_URL,
 });

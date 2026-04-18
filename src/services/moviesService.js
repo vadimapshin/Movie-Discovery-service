@@ -1,5 +1,5 @@
 import { getMovieById, saveMovie } from '../repositories/movieRepository.js';
-import { getMoviesDetails } from '../clients/tmdbClient.js';
+import { getMoviesDetails, searchMovies } from '../clients/tmdbClient.js';
 
 export async function getMovie(id) {
   const cached = await getMovieById(id);
@@ -16,4 +16,14 @@ export async function getMovie(id) {
   await saveMovie(movie);
 
   return movie;
+}
+
+export async function searchMoviesService(query, page = 1) {
+  const result = await searchMovies(query, page);
+
+  for (const movie of result.results) {
+    await saveMovie(movie);
+  }
+
+  return result;
 }

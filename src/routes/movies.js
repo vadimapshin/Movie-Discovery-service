@@ -1,5 +1,4 @@
-import { searchMovies } from '../clients/tmdbClient.js';
-import { getMovie } from '../services/moviesService.js';
+import { getMovie, searchMoviesService } from '../services/moviesService.js';
 
 export async function moviesRoutes(fastify) {
   fastify.get(
@@ -9,8 +8,8 @@ export async function moviesRoutes(fastify) {
         querystring: {
           type: 'object',
           properties: {
-            query: { type: 'string' },
-            page: { type: 'integer', default: 1 },
+            query: { type: 'string', minLength: 1 },
+            page: { type: 'integer', minimum: 1, default: 1 },
           },
           required: ['query'],
         },
@@ -20,19 +19,33 @@ export async function moviesRoutes(fastify) {
       const { query, page } = request.query;
 
       try {
-        return searchMovies(query, page);
+        return await searchMoviesService(query, page);
       } catch (err) {
         reply.status(500).send({ error: err.message });
       }
     },
   );
-  fastify.get('/movies/:id', async (request, reply) => {
-    const { id } = request.params;
+  fastify.get(
+    '/movies/:id',
+    {
+      schema: {
+        params: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer', minimum: 1 },
+          },
+          required: ['id'],
+        },
+      },
+    },
+    async (request, reply) => {
+      const { id } = request.params;
 
-    try {
-      return await getMovie(id);
-    } catch (err) {
-      reply.status(500).send({ error: err.message });
-    }
-  });
+      try {
+        return await getMovie(id);
+      } catch (err) {
+        reply.status(500).send({ error: err.message });
+      }
+    },
+  );
 }
