@@ -6,4 +6,3 @@ const { Pool } = pg;
 export const pool = new Pool({
   connectionString: String(config.DATABASE_URL),
 });
-console.log('DB URL:', config.DATABASE_URL);
