@@ -1,6 +1,7 @@
 import Fastify from 'fastify';
 import { moviesRoutes } from './routes/movies.js';
 import { config } from './config/env.js';
+import errorHandler from './plugins/errorHandler.js';
 
 const fastify = Fastify({
   logger: {
@@ -17,6 +18,7 @@ fastify.get('/ping', async () => {
   }
 });
 
+fastify.register(errorHandler);
 fastify.register(moviesRoutes);
 
 const start = async () => {

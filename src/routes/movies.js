@@ -15,14 +15,9 @@ export async function moviesRoutes(fastify) {
         },
       },
     },
-    async (request, reply) => {
+    async (request) => {
       const { query, page } = request.query;
-
-      try {
-        return await searchMoviesService(query, page);
-      } catch (err) {
-        reply.status(500).send({ error: err.message });
-      }
+      return searchMoviesService(query, page);
     },
   );
   fastify.get(
@@ -38,14 +33,9 @@ export async function moviesRoutes(fastify) {
         },
       },
     },
-    async (request, reply) => {
+    async (request) => {
       const { id } = request.params;
-
-      try {
-        return await getMovie(id);
-      } catch (err) {
-        reply.status(500).send({ error: err.message });
-      }
+      return getMovie(id);
     },
   );
 }
