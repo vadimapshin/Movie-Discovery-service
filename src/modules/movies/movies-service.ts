@@ -1,5 +1,4 @@
-import type Redis from 'ioredis';
-import { MovieRepository } from './movies-repository.js';
+import type { Redis } from 'ioredis';import { MovieRepository } from './movies-repository.js';
 import { getMovieDetails, searchMovies } from '../../clients/tmdb-client.js';
 
 const ONE_HOUR_IN_SECONDS = 60 * 60;
