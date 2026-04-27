@@ -1,5 +1,5 @@
 import fp from 'fastify-plugin';
-import Redis from 'ioredis';
+import { Redis } from 'ioredis'
 
 export default fp(async (fastify) => {
   const redis = new Redis({

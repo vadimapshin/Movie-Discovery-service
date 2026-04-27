@@ -1,9 +1,10 @@
 import { Knex } from 'knex';
+import type { Movie } from './movies-types.js';
 
 export class MovieRepository {
   constructor(private readonly db: Knex) {}
 
-  async getById(id: number) {
+  async getById(id: number): Promise<Movie | null> {
     const row = await this.db('movies')
       .where({ id })
       .first();
@@ -11,7 +12,7 @@ export class MovieRepository {
     return row?.data ?? null;
   }
 
-  async save(movie: any) {
+  async save(movie: any): Promise<void> {
     await this.db('movies')
       .insert({
         id: movie.id,
