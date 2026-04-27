@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import errorHandler from './plugins/error-handler.js';
 import knexPlugin from './plugins/knex.js';
+import redisPlugin from './plugins/redis.js';
 
 export function buildApp() {
   const app = Fastify({
@@ -13,6 +14,7 @@ export function buildApp() {
   });
 
   app.register(knexPlugin);
+  app.register(redisPlugin);
   app.register(errorHandler);
 
   app.get('/ping', async () => {
