@@ -1,7 +1,7 @@
 import type { Redis } from 'ioredis';
 import { MovieRepository } from './movies-repository.js';
 import { getMovieDetails, searchMovies } from '../../clients/tmdb-client.js';
-import { mapTmdbMovieToMovie } from './movies-mapper.js';
+import { mapTmdbMovieToMovie, mapTmdbSearchResponseToMovieSearchResponse } from './movies-mapper.js';
 
 const ONE_HOUR_IN_SECONDS = 60 * 60;
 const FIFTEEN_MINUTES_IN_SECONDS = 60 * 15;
@@ -47,16 +47,14 @@ export class MovieService {
     }
 
     const data = await searchMovies(query, page);
+    const mappedData = mapTmdbSearchResponseToMovieSearchResponse(data);
 
-    if (Array.isArray(data.results)) {
-      for (const tmdbMovie of data.results) {
-        const movie = mapTmdbMovieToMovie(tmdbMovie);
-        await this.movieRepository.save(movie);
-      }
+    for (const movie of mappedData.results) {
+      await this.movieRepository.save(movie);
     }
 
-    await this.redis.set(cacheKey, JSON.stringify(data), 'EX', FIFTEEN_MINUTES_IN_SECONDS);
+    await this.redis.set(cacheKey, JSON.stringify(mappedData), 'EX', FIFTEEN_MINUTES_IN_SECONDS);
 
-    return data;
+    return mappedData;
   }
 }

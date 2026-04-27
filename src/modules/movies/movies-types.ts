@@ -23,3 +23,10 @@ export interface TmdbSearchResponse {
   total_pages: number;
   total_results: number;
 }
+
+export interface MovieSearchResponse {
+  page: number;
+  results: Movie[];
+  totalPages: number;
+  totalResults: number;
+}
