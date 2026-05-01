@@ -1,8 +1,8 @@
 import Fastify from "fastify";
-import errorHandler from './plugins/error-handler.js';
-import knexPlugin from './plugins/knex.js';
-import redisPlugin from './plugins/redis.js';
-import { moviesRoutes } from './modules/movies/movies-routes.js';
+import errorHandler from '../plugins/error-handler.js';
+import knexPlugin from '../plugins/knex.js';
+import redisPlugin from '../plugins/redis.js';
+import { moviesRoutes } from '../modules/movies/movies-routes.js';
 
 export function buildApp() {
   const app = Fastify({
