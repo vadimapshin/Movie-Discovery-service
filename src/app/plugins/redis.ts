@@ -3,9 +3,9 @@ import { Redis } from 'ioredis'
 
 export default fp(async (fastify) => {
   const redis = new Redis({
-    host: process.env.REDIS_HOST,
-    port: Number(process.env.REDIS_PORT),
-    ...(process.env.REDIS_PASSWORD ? { password: process.env.REDIS_PASSWORD } : {}),
+    host: fastify.config.REDIS_HOST,
+    port: fastify.config.REDIS_PORT,
+    ...(fastify.config.REDIS_PASSWORD ? { password: fastify.config.REDIS_PASSWORD } : {}),
   });
 
   redis.on('connect', () => {
