@@ -1,4 +1,9 @@
-import type { Movie, MovieSearchResponse, TmdbMovie, TmdbSearchResponse } from './movies-types.js';
+import type {
+  Movie,
+  MovieSearchResponse,
+  TmdbMovie,
+  TmdbSearchResponse,
+} from '../src/app/movie/movies-types.js';
 
 export function mapTmdbMovieToMovie(tmdbMovie: TmdbMovie): Movie {
   return {

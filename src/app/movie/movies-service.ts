@@ -5,7 +5,7 @@ import { MovieRepository } from './movies-repository.js';
 import {
   mapTmdbMovieToMovie,
   mapTmdbSearchResponseToMovieSearchResponse,
-} from './movies-mapper.js';
+} from '../../../utils/movies-mapper.js';
 
 const ONE_HOUR_IN_SECONDS = 60 * 60;
 const FIFTEEN_MINUTES_IN_SECONDS = 60 * 15;
