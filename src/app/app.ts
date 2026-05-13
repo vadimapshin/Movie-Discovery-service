@@ -1,5 +1,5 @@
 import Fastify from "fastify";
-import { appPlugins } from './plugins/index.js';
+import appPlugins from './plugins/index.js';
 
 export function buildApp() {
   const app = Fastify({

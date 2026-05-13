@@ -1,11 +1,14 @@
 import { buildApp } from './app/app.js';
-import { env } from './env/index.js';
 
 const app = buildApp();
 
 const start = async () => {
   try {
-    await app.listen({ port: env.PORT });
+    await app.ready();
+
+    await app.listen({
+      port: app.config.PORT,
+    });
   } catch (err) {
     app.log.error(err);
     process.exit(1);

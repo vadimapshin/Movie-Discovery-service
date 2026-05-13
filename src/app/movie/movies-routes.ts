@@ -4,7 +4,7 @@ import { MovieService } from './movies-service.js';
 
 export async function moviesRoutes(fastify: FastifyInstance) {
   const movieRepository = new MovieRepository(fastify.knex);
-  const movieService = new MovieService(movieRepository, fastify.redis);
+  const movieService = new MovieService(fastify, movieRepository);
 
   fastify.get('/movies/search', async (request) => {
     const { query, page = 1 } = request.query as {
